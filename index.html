@@ -1,23 +1,184 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
-<title>Goldratt Portal</title>
+
+<meta charset="UTF-8">
+
+<title>
+Goldratt Analytics Portal
+</title>
+
+<style>
+
+body{
+
+font-family:Segoe UI;
+background:#F4F7FA;
+margin:0;
+padding:30px;
+
+}
+
+.header{
+
+background:#0B2341;
+color:white;
+padding:25px;
+border-radius:15px;
+margin-bottom:30px;
+text-align:center;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(
+auto-fit,
+minmax(
+300px,
+1fr
+)
+);
+
+gap:25px;
+
+}
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:
+0 0 15px
+rgba(
+0,
+0,
+0,
+0.1
+);
+
+}
+
+.button{
+
+display:inline-block;
+
+background:#0B2341;
+
+padding:12px;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:10px;
+
+margin-top:15px;
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-<h1>Goldratt Analytics Portal</h1>
 
-<a href="./Jaypore.html">
-Jaypore Dashboard
+<div class="header">
+
+<h1>
+
+Goldratt Analytics Portal
+
+</h1>
+
+<p>
+
+Inventory Reconciliation Dashboard
+
+</p>
+
+</div>
+
+
+<div
+class="grid"
+id="clients"
+>
+
+</div>
+
+
+<script>
+
+fetch(
+"./config/clients.json"
+)
+
+.then(
+response=>response.json()
+)
+
+.then(data=>{
+
+let html=''
+
+
+data.clients.forEach(client=>{
+
+html+=`
+
+<div class='card'>
+
+<h2>
+
+${client.name}
+
+</h2>
+
+<p>
+
+Client Dashboard
+
+</p>
+
+<a
+
+class='button'
+
+href='${client.dashboard}'
+
+target='_blank'
+
+>
+
+Open Dashboard
+
 </a>
 
-<br><br>
+</div>
 
-<a href="./SSL.html">
-SSL Dashboard
-</a>
+`
+
+})
+
+
+document.getElementById(
+'clients'
+).innerHTML=html
+
+})
+
+</script>
 
 </body>
 
